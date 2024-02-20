@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the form by its ID
+            var form = document.getElementById('signupForm');
+
+            // Listen for the form submission
+            form.addEventListener('submit', function(e) {
+                // Prevent the default form submission
+                e.preventDefault();
+
+                // Collect form data
+                var formData = new FormData(form);
+
+                // Prepare the data to be sent in JSON format
+                var data = {
+                    username: formData.get('username'),
+                    email: formData.get('email'),
+                    password: formData.get('password')
+                };
+
+                // Send the data using fetch
+                fetch('http://13.57.211.182:8080/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        // If there is an error field in the response, log the error message
+                        console.error('Failed to create a new user:', data.error);
+                        // Optionally, you can also display this error message on the webpage
+                        alert('Failed to create a new user.');
+                    } else {
+                        console.log('Success:', data);
+                        // Redirect to login page after successful registration
+                        window.location.href = './login.html';
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(to right, #56CCF2, #2F80ED, #2D9CDB, #56CCF2);
+            color: #fff;
+            text-align: center;
+            padding-top: 50px;
+        }
+    
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            display: inline-block;
+            padding: 90px;
+            color: #333;
+        }
+    
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+    
+        input[type="submit"] {
+            background-color: #2F80ED;
+            color: white;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #56CCF2;
+        }
+    
+        label {
+            text-align: left;
+            display: block;
+            margin-top: 20px;
+        }
+        .footer-menu {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        }
+
+        .footer-menu a {
+            color: white;
+            padding: 0 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-menu a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+<h2>Sign Up</h2>
+
+<form id="signupForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required minlength="6"><br><br>
+    <input type="submit" value="Sign Up">
+</form>
+<div class="footer-menu">
+    <a href="index.html">Return to Home</a>
+    <a href="mailto:chn@berkeley.edu">Contact: chn@berkeley.edu</a>
+</div>
+
+</body>
+</html>

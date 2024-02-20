@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: linear-gradient(to right, #56CCF2, #2F80ED, #56CCF2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+    
+        .container {
+            max-width: 300px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        input, button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+    
+        button {
+            background-color: #2F80ED;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #56CCF2;
+        }
+
+        .footer-menu {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        }
+
+        .footer-menu a {
+            color: white;
+            padding: 0 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <button onclick="window.location.href='./register.html'">Register</button>
+    </div>
+    <div class="footer-menu">
+        <a href="index.html">Return to Home</a>
+        <a href="mailto:chn@berkeley.edu">Contact: chn@berkeley.edu</a>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('http://13.57.211.182:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    localStorage.setItem('token', data.token); // 保存JWT到localStorage
+                    window.location.href = './userspace/userspace.html'; // 跳转到用户主页
+                } else {
+                    alert('Login failed!');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

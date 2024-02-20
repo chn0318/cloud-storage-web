@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Space</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Your Private Cloud Space</h1>
+    </header>
+    <section class="upload-section">
+        <input type="file" id="fileUpload" hidden onchange="displayFileName()">
+        <label for="fileUpload" class="btn">Choose File</label>
+        <span id="fileName"></span>
+        <button class="btn" onclick="uploadFiles()">Upload</button>
+        <button class="btn delete-btn" onclick="deleteFile()">Remove</button>
+    </section>
+    
+    <section class="file-list-section">
+        <h2>File List</h2>
+        <ul id="fileList">
+        </ul>
+    </section>
+</div>
+<div class="footer-menu">
+    <a href="../index.html">Return to Home</a>
+    <a href="mailto:chn@berkeley.edu">Contact: chn@berkeley.edu</a>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

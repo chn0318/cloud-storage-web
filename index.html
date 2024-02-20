@@ -1,1 +1,77 @@
-<h1>Welcome to Cloud</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Storage Service</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .login-button {
+            background-color: #ff5722;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #e64a19;
+        }
+        .footer-menu {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        }
+
+        .footer-menu a {
+            color: white;
+            padding: 0 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .footer-menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Private Cloud Storage</div>
+    <p class="description">Experience secure, scalable, and accessible storage from anywhere</p>
+    <button class="login-button" onclick="location.href='./login.html'">Get Started</button>
+    <div class="footer-menu">
+        <a href="mailto:chn@berkeley.edu">Contact: chn@berkeley.edu</a>
+    </div>
+</body>
+</html>
