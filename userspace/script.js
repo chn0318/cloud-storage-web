@@ -18,7 +18,7 @@ function uploadFiles() {
     const formData = new FormData();
     formData.append('file', fileUpload.files[0]); 
 
-    fetch('http://13.57.211.182:8080/api/files/upload', {
+    fetch('https://13.57.211.182/api/files/upload', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -63,7 +63,7 @@ window.onload = function() {
         }
     });
 
-    fetch('http://13.57.211.182:8080/api/users/data', {
+    fetch('https://13.57.211.182/api/users/data', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -119,7 +119,7 @@ function removeOptions() {
 
 function download_File(filename) {
     const token = localStorage.getItem('token'); // 从localStorage获取token
-    const url = `http://13.57.211.182:8080/api/files/${encodeURIComponent(filename)}`;
+    const url = `https://13.57.211.182/api/files/${encodeURIComponent(filename)}`;
 
     fetch(url, {
         method: 'GET',
@@ -157,17 +157,14 @@ function download_File(filename) {
 
 
 function delete_File(filename) {
-    // 确保你有正确的Token获取方式，这里假设Token存储在localStorage中
     const token = localStorage.getItem('token');
-    // 构建API请求的URL，注意替换成你的实际API地址和文件名处理方式
-    const url = `http://13.57.211.182:8080/api/files/${encodeURIComponent(filename)}`;
+    const url = `https://13.57.211.182/api/files/${encodeURIComponent(filename)}`;
 
     // 使用fetch发送DELETE请求，包含认证Token
     fetch(url, {
         method: 'DELETE', // 指定请求方法为DELETE
         headers: new Headers({
             'Authorization': `Bearer ${token}` // 包含认证Token
-            // 根据你的后端可能需要的其他头部，这里可以添加
         })
     })
     .then(response => {
